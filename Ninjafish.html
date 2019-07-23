@@ -1,0 +1,229 @@
+<html>
+    <head>
+        <title>NinjaFish</title>
+        <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+        }
+        .row {
+            line-height: 0px;
+        }
+        .grass {
+            background-color: rgb(40, 119, 40);
+            height: 23px;
+            width: 23px;
+            display: inline-block;
+            background-image: url("img/grass.jpg");
+            background-size: contain; 
+        }
+        .water {
+            background-color: black;
+            height: 23px;
+            width: 23px;
+            display: inline-block;
+            background-image: url("img/water.gif");
+            background-size: contain;
+        }
+        .blank {
+            background-color: black;
+            height: 23px;
+            width: 23px;
+            display: inline-block;
+            background-image: url("img/water.gif");
+            background-size: contain;
+        }
+        .shark{
+            background-color: black;
+            height: 23px;
+            width: 23px;
+            display: inline-block;
+            background-image: url("img/water.gif");
+            background-size: contain;
+        }
+        #ninjaman {
+            background-color: transparent;
+            height: 23px;
+            width: 23px;
+            display: inline-block;
+            background-image: url("img/water.gif");
+            background-size: contain;
+            position: absolute;
+            left: 23px;
+            top: 23px;
+        }
+        #fish {
+            height: 23px;
+            width: 23px;
+        }
+        </style>
+    </head>
+    <body>
+    <div id="world"><div class="row"><div class="wall"><div class="sushi"></div>
+    <div class="shark"><img src="img/sharksnime.gif"></div></div>
+    <div id="ninjaman"><img id="fish" src="img/herofish.gif"></div>
+    </div>           
+    </body>
+    <script type="text/javascript">
+
+    var worldDict = {
+        0: "blank",
+        1: "grass",
+        2: "water",
+        3: "shark"
+    }
+
+    var world = [
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [3,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1],
+    [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+]
+
+function randomRows(){
+    var row1 = Math.floor(Math.random()*(6-3)+3);
+    rows.push(row1);
+    var row2 = Math.floor(Math.random()*(6-3)+3);
+    row2 = row2 + 5;
+    rows.push(row2);
+    var row3 = Math.floor(Math.random()*(6-3)+3);
+    row3 = row3 + 10;
+    rows.push(row3);
+    var row4 = Math.floor(Math.random()*(6-3)+3);
+    row4 = row4 + 15;
+    rows.push(row4);
+    var row5 = Math.floor(Math.random()*(6-3)+3);
+    row5 = row5 + 20;
+    rows.push(row5);
+    for(var i = 2; i <= 27; i++){
+        world[row1][i] = 2;
+        world[row2][i] = 2;
+        world[row3][i] = 2;
+        world[row4][i] = 2;
+        world[row5][i] = 2;    
+    }
+    return world;
+}
+
+function randomColumns(){
+    var col1 = Math.floor(Math.random()*(6-3)+3);
+    columns.push(col1);
+    var col2 = Math.floor(Math.random()*(6-3)+3);
+    col2 = col2 + 5;
+    columns.push(col2);
+    var col3 = Math.floor(Math.random()*(6-3)+3);
+    col3 = col3 + 10;
+    columns.push(col3);
+    var col4 = Math.floor(Math.random()*(6-3)+3);
+    col4 = col4 + 15;
+    columns.push(col4);
+    var col5 = Math.floor(Math.random()*(6-3)+3);
+    col5 = col5 + 20;
+    columns.push(col5);
+    for(var i = 2; i <= 28; i++){
+        world[i][col1] = 2;
+        world[i][col2] = 2;
+        world[i][col3] = 2;
+        world[i][col4] = 2;
+        world[i][col5] = 2;
+    }
+    return world;
+}
+
+var rows = [2];
+var columns = [2];
+
+function drawWorld() {
+    var output = "";
+
+    for(var row = 0; row < world.length; row++){
+        output += "<div class='row'></div>";
+        for(var col = 0; col < world[row].length; col++){
+            output += "<div class=" + worldDict[world[row][col]] + "></div>";
+        }
+    }
+
+    document.getElementById('world').innerHTML = output;
+}
+
+function createRandomWorld(){
+    randomRows();
+    randomColumns();
+    makeItInteresting();
+    drawWorld();
+}
+createRandomWorld();
+
+function makeItInteresting(){
+    while(world[rows[0]][columns[0]] === 1){
+        world[rows[0]][columns[1]] = 1;
+        world[rows[0]][columns[3]] = 1;
+        world[rows[0]][columns[5]] = 1;
+        rows[0]++;
+    }
+    rows[1] = (rows[1])+1;
+    while(world[rows[1]][columns[0]] === 1){
+        world[rows[1]][columns[2]] = 1;
+        world[rows[1]][columns[4]] = 1;
+        rows[1]++;
+    }
+    rows[2] = (rows[2])+1;
+    while(world[rows[2]][columns[0]] === 1){
+        world[rows[2]][columns[1]] = 1;
+        world[rows[2]][columns[3]] = 1;
+        world[rows[2]][columns[5]] = 1;
+        rows[2]++;
+    }
+    rows[3] = (rows[3])+1;
+    while(world[rows[3]][columns[0]] === 1){
+        world[rows[3]][columns[2]] = 1;
+        world[rows[3]][columns[4]] = 1;
+        rows[3]++;
+    }
+    rows[4] = (rows[4])+1;
+    while(world[rows[4]][columns[0]] === 1){
+        world[rows[4]][columns[1]] = 1;
+        world[rows[4]][columns[3]] = 1;
+        world[rows[4]][columns[5]] = 1;
+        rows[4]++;
+    }
+    rows[5] = (rows[5])+1;
+    while(world[rows[5]][columns[0]] === 1){
+        world[rows[5]][columns[2]] = 1;
+        world[rows[5]][columns[4]] = 1;
+        rows[5]++;
+    }
+
+}
+
+    </script>
+    </html>
+
